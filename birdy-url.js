@@ -82,7 +82,7 @@ const MULTI_PART_TLDS = new Set([
   "gouv.fr", "gov.fr",
 ]);
 
-export function humanizeUrl(url) {
+function humanizeUrl(url) {
   try {
     const normalized = /^https?:\/\//i.test(url) ? url : `https://${url}`;
     const hostname = new URL(normalized).hostname.toLowerCase();
@@ -123,4 +123,8 @@ function formatToken(token) {
     .filter(Boolean)
     .map(w => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
+}
+
+module.exports = {
+  humanizeUrl
 }
