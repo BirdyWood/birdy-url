@@ -55,7 +55,7 @@ const IGNORED_SUBDOMAINS = new Set([
   "api", "edge", "cache", "internal", "origin", "proxy", "gateway",
   "lb", "ns", "ns1", "ns2",
   "smtp", "pop", "imap", "ftp", "sftp",
-  "vpn", "remote", "web", "ssl", "secure",
+  "vpn", "vps", "remote", "web", "ssl", "secure",
   "auth", "sso", "login", "oauth"
 ]);
 
@@ -65,18 +65,18 @@ const REGION_PATTERN = /^(us|eu|ap|sa|af|me)(-[a-z0-9]+)*$/;
 // the real domain sits one position further left (e.g. bbc.co.uk → domain=bbc).
 const MULTI_PART_TLDS = new Set([
   "com.au", "net.au", "org.au", "edu.au", "gov.au",
-  "co.uk",  "org.uk", "gov.uk", "ac.uk",  "me.uk",
-  "co.jp",  "ne.jp",  "or.jp",  "ac.jp",
-  "co.kr",  "or.kr",
-  "co.in",  "net.in", "org.in",
+  "co.uk", "org.uk", "gov.uk", "ac.uk", "me.uk",
+  "co.jp", "ne.jp", "or.jp", "ac.jp",
+  "co.kr", "or.kr",
+  "co.in", "net.in", "org.in",
   "com.br", "net.br", "org.br",
   "com.mx", "org.mx",
   "com.cn", "net.cn", "org.cn",
   "com.hk", "org.hk",
   "com.sg", "org.sg",
   "com.tw", "org.tw",
-  "co.nz",  "org.nz",
-  "co.za",  "co.id",
+  "co.nz", "org.nz",
+  "co.za", "co.id",
   "com.ar", "com.tr", "com.sa", "com.pl", "com.ua",
   "com.co", "com.cl", "com.pe", "com.my", "com.pk",
   "gouv.fr", "gov.fr",
@@ -87,7 +87,9 @@ function humanizeUrl(url) {
     const normalized = /^https?:\/\//i.test(url) ? url : `https://${url}`;
     const hostname = new URL(normalized).hostname.toLowerCase();
 
-    if (/^\d+\.\d+\.\d+\.\d+$/.test(hostname)) return { displayName: "Website", verified: false };
+    if (/^\d+\.\d+\.\d+\.\d+$/.test(hostname)) {
+      return { displayName: "Website (" + hostbame + ")", verified: false };
+    }
 
     const parts = hostname.split(".");
     const tldSize = MULTI_PART_TLDS.has(parts.slice(-2).join(".")) ? 3 : 2;
