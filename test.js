@@ -78,8 +78,8 @@ test("No scheme", "labs.birdywood.fr", { displayName: "Birdywood Labs", verified
 test("Trailing slash", "https://github.com/", { displayName: "GitHub", verified: true });
 test("With path", "https://dashboard.stripe.com/invoices/123", { displayName: "Stripe Dashboard", verified: true });
 test("With query string", "https://blog.cloudflare.com?ref=hn", { displayName: "Cloudflare Blog", verified: true });
-test("IP address", "https://192.168.1.1", { displayName: "Website", verified: false });
-test("Garbage input", "not-a-url!!!", { displayName: "Website", verified: false });
+test("IP address", "https://192.168.1.1", { displayName: "Website (https://192.168.1.1)", verified: false });
+test("Garbage input", "not-a-url!!!", { displayName: "Website (not-a-url!!!)", verified: false });
 test("Empty string", "", { displayName: "Website", verified: false });
 
 console.log(`\n${"─".repeat(54)}`);

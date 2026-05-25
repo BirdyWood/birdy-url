@@ -83,12 +83,15 @@ const MULTI_PART_TLDS = new Set([
 ]);
 
 function humanizeUrl(url) {
+  const defaultDisplayName = `Website${url ? " (" + url + ")" : ""}`
+  
   try {
     const normalized = /^https?:\/\//i.test(url) ? url : `https://${url}`;
     const hostname = new URL(normalized).hostname.toLowerCase();
 
+
     if (/^\d+\.\d+\.\d+\.\d+$/.test(hostname)) {
-      return { displayName: "Website (" + hostbame + ")", verified: false };
+      return { displayName: defaultDisplayName, verified: false };
     }
 
     const parts = hostname.split(".");
@@ -107,11 +110,11 @@ function humanizeUrl(url) {
     const displayName = [domain, ...(subdomains).reverse()]
       .map(formatToken)
       .filter(Boolean)
-      .join(" ") || "Website";
+      .join(" ") || defaultDisplayName;
 
     return { displayName, verified: !!BRAND_ALIASES[domain] };
   } catch {
-    return { displayName: "Website", verified: false };
+    return { displayName: defaultDisplayName, verified: false };
   }
 }
 
