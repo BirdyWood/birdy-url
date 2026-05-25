@@ -49,7 +49,7 @@ Or load it directly from GitHub releases without downloading:
 | `https://dashboard.stripe.com` | `Stripe Dashboard` | `true` |
 | `https://docs.github.com` | `GitHub Docs` | `true` |
 | `https://cdn.api.github.com` | `GitHub` | `true` |
-| `https://admin.labs.birdywood.fr` | `Birdywood Admin Labs` | `true` |
+| `https://www.birdywood.fr` | `Birdywood` | `true` |
 | `https://bbc.co.uk` | `BBC` | `true` |
 | `https://gooogle.com` | `Gooogle` | `false` |
 | `https://my-cool-app.com` | `My Cool App` | `false` |
